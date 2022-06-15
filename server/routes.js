@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getNaughtyList, addPerson } = require('./controllers');
+const { getNaughtyList, addToNaughtyList } = require('./controllers');
 
 
 router.get('/naughtyList', (req, res) => {
@@ -13,12 +13,13 @@ router.get('/naughtyList', (req, res) => {
   });
 });
 
-router.post('/addPerson', (req, res) => {
-  const {name, description, naughtiness} = req.body;
+router.post('/addToNaughtyList', (req, res) => {
+  const {name, description, naughtyLevel} = req.body;
 
-  addPerson(name, description, naughtiness)
+  addToNaughtyList(name, description, naughtyLevel)
   .then((data) => {
-    res.send();
+    console.log('data: ', data)
+    res.send(); //remember to send status code
   })
   .catch((err) => {
     res.send(err.message);

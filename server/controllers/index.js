@@ -1,7 +1,7 @@
 const { getNaughtyList } = require('./getNaughtyList');
-const { addPerson } = require('./addPerson');
+const { addToNaughtyList } = require('./addToNaughtyList');
 
 module.exports = {
   getNaughtyList,
-  addPerson,
+  addToNaughtyList,
 }

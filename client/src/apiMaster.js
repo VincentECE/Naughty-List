@@ -9,10 +9,11 @@ export function getNaughtyList() {
   });
 };
 
-export function addPerson(name, description, naughtyLevel) {
+export function addToNaughtyList(name, description, naughtyLevel) {
+  console.log('made it to addToNaughtyList!');
   return axios({
     method: 'post',
-    url: ''.concat(serverURL, 'addPerson'),
+    url: ''.concat(serverURL, 'addToNaughtyList'),
     data: {
       name: name,
       description: description,

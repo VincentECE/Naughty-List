@@ -2,8 +2,10 @@ import React from 'react';
 import useStore from '../store.js';
 
 function AddPerson() {
+  const addToNaughtyList = useStore((state) => state.addToNaughtyList);
+
   return (
-    <form className="form" onSubmit={()=>{useStore.addToNaughtyList}}>
+    <form className="form" onSubmit={(e)=>{addToNaughtyList(e)}}>
       <label>Add a naughty person to the list: </label>
       <input type="text" name="name"  placeholder="Name" required/>
       <input type="text" name="description"  placeholder="Description" required/>

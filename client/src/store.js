@@ -1,10 +1,11 @@
 import create from 'zustand';
-import { getNaughtyList, addPerson } from './apiMaster.js';
+import { getNaughtyList, addToNaughtyList } from './apiMaster.js';
 
 const useStore = create((set) => ({
   naughtyList: [],
   setNaughtyList: (naughtyList) => set({ naughtyList}),
   updateNaughtyList: async () => {
+    console.log('updating naughtyList')
     try {
       const { data } = await getNaughtyList();
       set({naughtyList: data});
@@ -12,10 +13,16 @@ const useStore = create((set) => ({
       console.log(err);
     }
   },
-  addToNaughtyList: async (name, description, naughtyLevel) => {
+  addToNaughtyList: async (e) => {
+    e.preventDefault();
+
+    const name = e?.target[0].value;
+    const description = e?.target[1].value;
+    const naughtyLevel = e?.target[2].value;
+
     try {
-      await addPerson(name, description, naughtyLevel);
-      this.updateNaughtyList;
+      await addToNaughtyList(name, description, naughtyLevel);
+      // this.updateNaughtyList;
     } catch (err) {
       console.log(err);
     }
