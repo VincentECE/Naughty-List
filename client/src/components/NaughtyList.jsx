@@ -21,13 +21,13 @@ function NaughtyList() {
       <div className="description list-details">
         <h2>Description</h2>
         {list.map((person) => {
-          return <p key={uuidv4}>{person.description} </p>;
+          return <p key={uuidv4()}>{person.description} </p>;
         })}
       </div>
       <div className="naughtiness list-details">
         <h2>Naughty Level</h2>
         {list.map((person) => {
-          return <p key={uuidv4}>{person.naughtiness} </p>;
+          return <p key={uuidv4()}>{person.naughtiness} </p>;
         })}
       </div>
     </>

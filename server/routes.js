@@ -3,13 +3,12 @@ const { getNaughtyList, addToNaughtyList } = require('./controllers');
 
 
 router.get('/naughtyList', (req, res) => {
-  console.log('yeah man')
   getNaughtyList()
   .then((data)=> {
     res.send(data);
   })
   .catch((err) => {
-    res.send(err.message);
+    res.send(err);
   });
 });
 
@@ -18,11 +17,10 @@ router.post('/addToNaughtyList', (req, res) => {
 
   addToNaughtyList(name, description, naughtyLevel)
   .then((data) => {
-    console.log('data: ', data)
-    res.send(); //remember to send status code
+    res.status(201).send(); //remember to send status code
   })
   .catch((err) => {
-    res.send(err.message);
+    res.status(err.statusCode).send(err.message);
   });
 });
 

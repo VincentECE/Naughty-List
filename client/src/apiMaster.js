@@ -10,7 +10,6 @@ export function getNaughtyList() {
 };
 
 export function addToNaughtyList(name, description, naughtyLevel) {
-  console.log('made it to addToNaughtyList!');
   return axios({
     method: 'post',
     url: ''.concat(serverURL, 'addToNaughtyList'),
