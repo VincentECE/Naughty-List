@@ -1,27 +1,26 @@
 const router = require('express').Router();
-const { getNaughtyList, addPerson } = require('./controllers');
+const { getNaughtyList, addToNaughtyList } = require('./controllers');
 
 
 router.get('/naughtyList', (req, res) => {
-  console.log('yeah man')
   getNaughtyList()
   .then((data)=> {
     res.send(data);
   })
   .catch((err) => {
-    res.send(err.message);
+    res.send(err);
   });
 });
 
-router.post('/addPerson', (req, res) => {
-  const {name, description, naughtiness} = req.body;
+router.post('/addToNaughtyList', (req, res) => {
+  const {name, description, naughtyLevel} = req.body;
 
-  addPerson(name, description, naughtiness)
+  addToNaughtyList(name, description, naughtyLevel)
   .then((data) => {
-    res.send();
+    res.status(201).send(); //remember to send status code
   })
   .catch((err) => {
-    res.send(err.message);
+    res.status(err.statusCode).send(err.message);
   });
 });
 

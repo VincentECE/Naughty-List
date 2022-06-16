@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
 
 const peopleSchema = new mongoose.Schema({
   name: {
@@ -9,6 +10,7 @@ const peopleSchema = new mongoose.Schema({
   },
   description: {
     type: String,
+    required: true,
   },
   naughtiness: {
     type: Number,
@@ -16,6 +18,8 @@ const peopleSchema = new mongoose.Schema({
     required: true,
   }
 });
+
+peopleSchema.plugin(uniqueValidator);
 
 //compound indexing
 // peopleSchema.index({name: 1, naughtiness: 1});
