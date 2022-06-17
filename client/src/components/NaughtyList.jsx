@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 
 function NaughtyList() {
   const list = useStore((state) => state.naughtyList);
+  const deleteFromNaughtyList = useStore((state) => state.deleteFromNaughtyListAndUpdate);
   return list.length > 0 ? (
     <>
       <div className="name list-details">
@@ -11,7 +12,7 @@ function NaughtyList() {
         {list.map((person) => {
           return (
             <div className="name-buttons" key={uuidv4()}>
-            <button type='button'>delete</button>
+            <button type='button' onClick={()=>{deleteFromNaughtyList(person.name)}}>delete</button>
             <button type='button'>edit</button>
           <p >{person.name} </p>
           </div>
