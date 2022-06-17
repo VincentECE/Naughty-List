@@ -24,7 +24,11 @@ const useStore = create((set, get) => ({
       const newList = [{name, description, naughtyLevel}, ...currentNaughtyList]
       set(state => ({naughtyList: newList}));
     } catch (err) {
-      console.log(err);
+      if(err.response.status === 409) {
+        alert("The person you're trying to add is already in the database. Use edit instead");
+      } else {
+        alert("Whelp. That didn't work");
+      }
     }
   },
   deleteFromNaughtyListAndUpdate: async (name) => {

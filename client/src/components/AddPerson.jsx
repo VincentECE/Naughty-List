@@ -1,14 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useStore from '../store.js';
 
 function AddPerson() {
   const addToNaughtyListAndUpdate = useStore((state) => state.addToNaughtyListAndUpdate);
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [naughtyLevel, setNaughtyLevel] = useState('');
 
+  const handleChangeName = (e) => {
+    setName(event.target.value)
+  }
+
+  const handleChangeDescription = (e) => {
+    setDescription(event.target.value);
+  }
+
+  const handleSubmit = (e) => {
+    addToNaughtyListAndUpdate(e);
+    setName('');
+    setDescription('');
+  }
   return (
-    <form className="form" onSubmit={(e)=>{addToNaughtyListAndUpdate(e)}}>
+    <form className="form" onSubmit={handleSubmit}>
       <label>Add a naughty person to the list: </label>
-      <input type="text" name="name"  placeholder="Name" required/>
-      <input type="text" name="description"  placeholder="Description" required/>
+      <input type="text" name="name"  placeholder="Name" required onChange={(e) => {handleChangeName(e)}} value={name}/>
+      <input type="text" name="description"  placeholder="Description" required onChange={e => handleChangeDescription(e)} value={description}/>
 
       <label>Naughty level:
       <select>
