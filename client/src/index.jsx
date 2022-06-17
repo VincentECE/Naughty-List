@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import useStore from './store.js';
 import { createRoot } from 'react-dom/client';
-import { getNaughtyList } from './apiMaster.js';
 import NaughtyList from './components/NaughtyList.jsx';
 import AddPerson from './components/AddPerson.jsx'
 const container = document.getElementById('app');
 const root = createRoot(container);
-
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);

@@ -20,3 +20,13 @@ export function addToNaughtyList(name, description, naughtyLevel) {
     },
   });
 };
+
+export function deleteFromNaughtyList(name) {
+  return axios({
+    method: 'delete',
+    url: ''.concat(serverURL, 'delete'),
+    data: {
+      name: name,
+    },
+  });
+};
