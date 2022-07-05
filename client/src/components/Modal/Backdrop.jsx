@@ -1,6 +1,6 @@
 import React from 'react';
-import propTypes from 'prop-types';
-import './Modal.scss';
+// import propTypes from 'prop-types';
+// import './Modal.scss';
 
 /**
  * This component should be rendered next to <Modal></Modal>
@@ -13,16 +13,18 @@ import './Modal.scss';
  * @returns React Component
  */
 
-function Backdrop({ showModal, clickHandler }) {
+export function Backdrop({ showModal, clickHandler }) {
   const newLocal = 'modal-overlay closed';
   return (
     <button className={showModal ? 'ratings-reviews-modal-overlay' : newLocal} onClick={clickHandler} type="button" aria-label="Close Pop Up Menu" />
   );
 }
-Backdrop.propTypes = {
-  showModal: propTypes.bool.isRequired,
-  clickHandler: propTypes.func.isRequired,
-};
+// Backdrop.propTypes = {
+//   showModal: propTypes.bool.isRequired,
+//   clickHandler: propTypes.func.isRequired,
+// };
+
+
 
 export default Backdrop;
 

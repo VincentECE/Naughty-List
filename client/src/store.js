@@ -35,7 +35,10 @@ const useStore = create((set, get) => ({
     try{
       await deleteFromNaughtyList(name);
       let currentNaughtyList = get().naughtyList;
-      currentNaughtyList.pop();
+      let index = currentNaughtyList.findIndex(object => {
+        return object.name === name;
+      });
+      currentNaughtyList.splice(index, 1);
       let newList = [...currentNaughtyList];
       set(state => ({naughtyList: newList}));
     } catch(err) {

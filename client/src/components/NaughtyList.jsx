@@ -1,38 +1,76 @@
-import React from "react";
+import React, { useState } from "react";
 import useStore from "../store.js";
 import { v4 as uuidv4 } from "uuid";
+import { Item } from "../components/Item";
+import modifyPerson from "../buttons/modifyPerson.jsx";
 
 function NaughtyList() {
   const list = useStore((state) => state.naughtyList);
-  const deleteFromNaughtyList = useStore((state) => state.deleteFromNaughtyListAndUpdate);
+  const deleteFromNaughtyList = useStore(
+  (state) => state.deleteFromNaughtyListAndUpdate
+);
+
+  const [editName, setEditName] = useState("");
   return list.length > 0 ? (
     <>
-      <div className="name list-details">
-        <h2>Name</h2>
-        {list.map((person) => {
-          return (
-            <div className="name-buttons" key={uuidv4()}>
-            <button type='button' onClick={()=>{deleteFromNaughtyList(person.name)}}>delete</button>
-            <button type='button'>edit</button>
-          <p >{person.name} </p>
+      <div style={{ width: "inherit", height: "auto" }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-evenly",
+            alignItems: "space-evenly",
+            width: "inherit",
+            height: "auto",
+          }}
+        >
+          <h1>Name</h1>
+          <h1>Description</h1>
+          <h1>Level</h1>
+          <span></span>
+        </div>
+        {list.map(({ name, description, naughtiness }) => (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-evenly",
+              alignItems: "space-evenly",
+              width: "inherit",
+              height: "auto",
+            }}
+            key={uuidv4()}
+          >
+            <Item
+              text={name}
+              title="Name"
+              isEdit={name === editName}
+            />
+            <Item
+              text={description}
+              title="Description"
+              isEdit={name === editName}
+            />
+            <Item
+              text={naughtiness}
+              title="Level"
+              isEdit={name === editName}
+            />
+            <div>
+             <modifyPerson
+             name={name}
+             isEdit={name === editName}
+             setEditName={setEditName}
+             />
+            </div>
           </div>
-          )
-        })}
-      </div>
-      <div className="description list-details">
-        <h2>Description</h2>
-        {list.map((person) => {
-          return <p key={uuidv4()}>{person.description} </p>;
-        })}
-      </div>
-      <div className="naughtiness list-details">
-        <h2>Naughty Level</h2>
-        {list.map((person) => {
-          return <p key={uuidv4()}>{person.naughtiness} </p>;
-        })}
+        ))}
       </div>
     </>
-  ) : (<>No naughty people to show... yet</>);
+  ) : (
+    <>No naughty people to show... yet</>
+  );
 }
+
 
 export default NaughtyList;

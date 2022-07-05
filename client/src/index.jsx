@@ -20,7 +20,7 @@ function App() {
   return (
     <div className="main">
       <h1>Naughty List</h1>
-      <div className="naughty-list">
+      <div style={{ width: 'inherit',  height: 'auto'}}>
         <NaughtyList/>
       </div>
     <div className="addPerson">

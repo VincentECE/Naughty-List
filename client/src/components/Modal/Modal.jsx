@@ -1,6 +1,6 @@
-import propTypes from 'prop-types';
+// import propTypes from 'prop-types';
 import React from 'react';
-import './Modal.scss';
+// import './Modal.scss';
 
 /**
  * This component should be rendered next to <Backdrop />
@@ -19,13 +19,13 @@ function Modal({ showModal, children }) {
     </div>
   );
 }
-Modal.defaultProps = {
-  children: null,
-};
+// Modal.defaultProps = {
+//   children: null,
+// };
 
-Modal.propTypes = {
-  showModal: propTypes.bool.isRequired,
-  children: propTypes.node,
-};
+// Modal.propTypes = {
+//   showModal: propTypes.bool.isRequired,
+//   children: propTypes.node,
+// };
 
 export default Modal;

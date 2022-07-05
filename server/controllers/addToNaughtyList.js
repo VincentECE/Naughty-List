@@ -11,7 +11,6 @@ async function addToNaughtyList(name, description, naughtiness) {
   } else {
     return People.create({name: name, description: description, naughtiness: naughtiness});
   }
-
 }
 
 module.exports = {
