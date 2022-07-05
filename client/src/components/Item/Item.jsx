@@ -10,7 +10,6 @@ export const Item = ({
   <div>
     <form
       onSubmit={(e) => handleEditSubmit(e.target.value)}>
-      <button type="button">Save</button>
       <input type="text" value={text}/>
     </form>
   </div>

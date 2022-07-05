@@ -2,13 +2,10 @@ import React, { useState } from "react";
 import useStore from "../store.js";
 import { v4 as uuidv4 } from "uuid";
 import { Item } from "../components/Item";
-import modifyPerson from "../buttons/modifyPerson.jsx";
+import ModifyPerson from "../buttons/ModifyPerson.jsx";
 
 function NaughtyList() {
   const list = useStore((state) => state.naughtyList);
-  const deleteFromNaughtyList = useStore(
-  (state) => state.deleteFromNaughtyListAndUpdate
-);
 
   const [editName, setEditName] = useState("");
   return list.length > 0 ? (
@@ -57,7 +54,7 @@ function NaughtyList() {
               isEdit={name === editName}
             />
             <div>
-             <modifyPerson
+             <ModifyPerson
              name={name}
              isEdit={name === editName}
              setEditName={setEditName}

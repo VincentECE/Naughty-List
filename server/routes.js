@@ -1,5 +1,9 @@
 const router = require('express').Router();
-const { getNaughtyList, addToNaughtyList, deleteFromNaughtyList } = require('./controllers');
+const { getNaughtyList,
+  addToNaughtyList,
+  deleteFromNaughtyList,
+  modifyPerson,
+} = require('./controllers');
 
 
 router.get('/naughtyList', (req, res) => {
@@ -32,6 +36,19 @@ router.delete('/delete', (req, res) => {
   })
   .catch((err)=>{
     res.status(err.statusCode).send();
+  });
+
+});
+
+router.patch('/modifyPerson', (req, res)=> {
+  const { name, description, naughtyLevel } = req.body;
+
+  modifyPerson(name, description, naughtyLevel)
+  .then(()=> {
+    res.status(202).send();
+  })
+  .catch((err)=>{
+    res.send(err);
   });
 
 });

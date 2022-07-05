@@ -17,11 +17,13 @@ const useStore = create((set, get) => ({
 
     const name = e?.target[0].value;
     const description = e?.target[1].value;
-    const naughtyLevel = e?.target[2].value;
+    const naughtiness = e?.target[2].value;
+
     try {
-      const results = await addToNaughtyList(name, description, naughtyLevel);
+      const results = await addToNaughtyList(name, description, naughtiness);
       let currentNaughtyList = get().naughtyList;
-      const newList = [{name, description, naughtyLevel}, ...currentNaughtyList]
+
+      const newList = [{name, description, naughtiness}, ...currentNaughtyList]
       set(state => ({naughtyList: newList}));
     } catch (err) {
       if(err.response.status === 409) {
